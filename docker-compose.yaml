@@ -1,0 +1,14 @@
+services:
+
+  api:
+    build: ./
+
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - api
+    volumes:
+      - ./nginx.conf:/etc/nginx/templates/default.conf.template:ro
+    ports:
+      - "${PORT:-8080}:80"
+
